@@ -1,0 +1,26 @@
+.list-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.card-item {
+    width: 320px;
+    height: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.picture {
+    width: 300px;
+    height: 400px;
+    border-radius: 10px;
+}
+
+.btn-detail {
+    border-radius: 5px;
+    background-color: #e95656cf;
+    color: #ffffff;
+    margin: 5px;
+}

@@ -1,0 +1,23 @@
+.div-navbar {
+    justify-content: space-around;
+    width: 100%;
+    align-items: center;
+}
+
+.navbar-link {
+    text-decoration: none;
+}
+
+.navbar-brand {
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.dropdown {
+    height: 38px;
+}
+
+.dropdown-menu a {
+    text-decoration: none;
+}
+

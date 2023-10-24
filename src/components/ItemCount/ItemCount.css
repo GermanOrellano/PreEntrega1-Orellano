@@ -1,0 +1,22 @@
+.count {
+    display: flex;
+    align-items: center;
+}
+
+.counter {
+    display: flex;
+    width: 200px;
+    margin: 5px;
+    align-items: center;
+}
+
+.counter button, h4 {
+    margin: 10px;
+    border-radius: 5px;
+}
+
+.add button{
+    border-radius: 5px;
+}
+
+
