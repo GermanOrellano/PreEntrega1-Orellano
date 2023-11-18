@@ -1,27 +1,46 @@
 import { useState, useEffect } from 'react'
 import './ItemDetailContainer.css'
-import { getItemById } from '../../Mock.jsx'
 import ItemDetail from '../ItemDetail/ItemDetail.jsx'
 import { useParams } from 'react-router-dom'
+import { doc, getDoc, getFirestore } from 'firebase/firestore'
 
 const ItemDetailContainer = () => {
-    const [itemD, setItemD] = useState([])
+    /* const [itemD, setItemD] = useState([])
 
-    const {itemId} = useParams()
+    const { itemId } = useParams()*/
+
+    /*
+         return (
+             <div className='item-detail-container'>
+                 <ItemDetail {...itemD} />
+             </div>
+         ) */
+
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
+    const { itemId } = useParams()
 
     useEffect(() => {
-        getItemById(itemId) //le pasamos el id obtenido
-            .then(response => {
-                setItemD(response)
+        const db = getFirestore()
+        const oneProduct = doc(db, 'vinos', `${itemId}`)
+
+        getDoc(oneProduct)
+            .then((snapshot) => {
+                const data = snapshot.data()
+                const productAdapted = { id: snapshot.id, ...data }
+                setProducts(productAdapted)
             })
             .catch(error => {
                 console.log(error);
+            })
+            .finally(() => {
+                setLoading(false)
             })
     }, [itemId])
 
     return (
         <div className='item-detail-container'>
-            <ItemDetail {...itemD} />
+            <ItemDetail {...products} />
         </div>
     )
 }

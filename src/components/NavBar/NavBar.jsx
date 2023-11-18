@@ -3,6 +3,8 @@ import './NavBar.css'
 import CartWidget from '../CartWidget/CartWidget'
 import { Link, NavLink } from 'react-router-dom'
 
+
+
 const NavBar = () => {
     return (
         <>
@@ -16,9 +18,9 @@ const NavBar = () => {
                             Categorías
                         </button>
                         <ul className="dropdown-menu">
-                            <NavLink to={`/category/${'tintos'}`}><button className="dropdown-item" type="button">Vinos tintos</button></NavLink>
-                            <NavLink to={`/category/${'rosados'}`}><button className="dropdown-item" type="button">Vinos rosados</button></NavLink>
-                            <NavLink to={`/category/${'blancos'}`}><button className="dropdown-item" type="button">Vinos blancos</button></NavLink>
+                            <NavLink to={`/category/${'tinto'}`}><button className="dropdown-item" type="button">Vinos tintos</button></NavLink>
+                            <NavLink to={`/category/${'rosado'}`}><button className="dropdown-item" type="button">Vinos rosados</button></NavLink>
+                            <NavLink to={`/category/${'blanco'}`}><button className="dropdown-item" type="button">Vinos blancos</button></NavLink>
                         </ul>
                     </div>
                     <CartWidget />

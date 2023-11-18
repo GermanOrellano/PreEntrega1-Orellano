@@ -2,31 +2,46 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import ItemList from '../ItemList/ItemList.jsx'
 import './ItemListContainer.css'
-import { getItem, getProductByCategory } from '../../Mock.jsx'
 import { useParams } from 'react-router-dom'
+import { collection, getDocs, query, getFirestore, where } from 'firebase/firestore'
 
 
-const ItemListContainer = ({ greeting }) => {
-    const [item, setItem] = useState([])
+const ItemListContainer = () => {
+    const [products, setProducts] = useState([])
+    const [loading, setLoading] = useState(true)
 
     const { categoryId } = useParams()
 
     useEffect(() => {
-        const asyncFunc = categoryId ? getProductByCategory : getItem;
 
-        asyncFunc(categoryId)
-            .then(response => {
-                setItem(response)
+        setLoading(true)
+        const db = getFirestore()
+
+        const itemsCollections = collection(db, 'vinos')
+
+        getDocs(itemsCollections)
+            .then((snapshot) => {
+                const docs = snapshot.docs.map((doc) => {
+                    const data = doc.data()
+                    return { id: doc.id, ...data }
+                })
+                setProducts(docs)
             })
             .catch(error => {
                 console.log(error);
             })
-    }, [categoryId])
+            .finally(() => {
+                setLoading(false)
+            })
+    }, [])
+
+    const categoryFilter = products.filter((cat) => {
+        return cat.categoria === categoryId
+    })
 
     return (
         <>
-            <h1 className='greeting'>{greeting}</h1>
-            <ItemList item={item} />
+            {categoryId ? <ItemList product={categoryFilter} /> : <ItemList product={products} />}
         </>
     )
 }

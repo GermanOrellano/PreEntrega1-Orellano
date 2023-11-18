@@ -9,7 +9,7 @@
     align-items: center;
 }
 
-.detail-product{
+.detail-product {
     display: contents;
 }
 
@@ -20,6 +20,15 @@
 }
 
 .btn-back {
-    margin-top: 25px;   
+    margin-top: 25px;
+    border-radius: 5px;
+}
+
+.finishBuy {
+    text-decoration: none;
+    color: black;
+}
+
+.btn-finishBuy {
     border-radius: 5px;
 }

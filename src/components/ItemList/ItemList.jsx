@@ -2,11 +2,11 @@ import React from 'react'
 import './ItemList.css'
 import Item from '../Item/Item.jsx'
 
-const ItemList = ({ item }) => {
+const ItemList = ({ product }) => {
 
     return (
         <div className='list-group'>
-            {item.map(prod => <Item key={prod.id} {...prod} />)}
+            {product.map(prod => <Item key={prod.id} id={prod.id} {...prod} />)}
         </div>
     )
 }
